@@ -1,0 +1,18 @@
+# OS / editor / Python cache
+.vscode/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+
+# Build / logs / temp
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+
+# Jupyter
+.ipynb_checkpoints/

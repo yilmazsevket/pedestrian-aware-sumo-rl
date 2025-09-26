@@ -1,6 +1,6 @@
 # Real-time Adaptive Traffic Signal Control (SUMO + RL)
 
-Bachelor’s thesis project — an end-to-end pipeline to train, evaluate, and analyze a reinforcement learning (RL) policy that controls a single intersection in the SUMO traffic simulator via TraCI.
+Bachelor’s thesis project: an end-to-end pipeline to train, evaluate, and analyze a reinforcement learning (RL) policy that controls a single intersection in the SUMO traffic simulator via TraCI.
 
 ## What this project does
 
