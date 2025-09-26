@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+  <!-- SUMO vehicle routes: vehicle types, routes, and time-of-day flows for a 4-arm junction with all turning options. -->
+  <!-- Vehicle types with more variation -->
+  <vType id="passenger_car" vClass="passenger" length="5.0" minGap="2.0" maxSpeed="40.0" accel="2.0" decel="4.0" sigma="0.8" speedDev="0.15" color="1,1,0"/>
+  <vType id="heavy_vehicle" vClass="truck" length="10.0" minGap="3.0" maxSpeed="25.0" accel="1.0" decel="3.0" sigma="0.6" speedDev="0.1" color="0,0,1"/>
+
+  <!-- Route definitions (with all turning options) -->
+  <!-- From North (-E0) -->
+  <route id="N2S" edges="-E0 E2" color="1,0,0"/>      <!-- Straight -->
+  <route id="N2E" edges="-E0 E3" color="1,0.5,0"/>    <!-- Right turn -->
+  <route id="N2W" edges="-E0 E1" color="1,0,0.5"/>    <!-- Left turn -->
+  
+  <!-- From South (-E2) -->
+  <route id="S2N" edges="-E2 E0" color="0,1,0"/>      <!-- Straight -->
+  <route id="S2W" edges="-E2 E1" color="0.5,1,0"/>    <!-- Right turn -->
+  <route id="S2E" edges="-E2 E3" color="0,1,0.5"/>    <!-- Left turn -->
+  
+  <!-- From East (-E3) -->
+  <route id="E2W" edges="-E3 E1" color="0,0,1"/>      <!-- Straight -->
+  <route id="E2N" edges="-E3 E0" color="0.5,0,1"/>    <!-- Right turn -->
+  <route id="E2S" edges="-E3 E2" color="0,0.5,1"/>    <!-- Left turn -->
+  
+  <!-- From West (-E1) -->
+  <route id="W2E" edges="-E1 E3" color="1,1,1"/>      <!-- Straight -->
+  <route id="W2S" edges="-E1 E2" color="1,0.5,1"/>    <!-- Right turn -->
+  <route id="W2N" edges="-E1 E0" color="0.5,1,1"/>    <!-- Left turn -->
+
+  <!-- NIGHT TRAFFIC PART 1 (00:00-07:00) with low volume -->
+  <!-- Randomization elements for night simulation -->
+  <flow id="early_night_N2S" type="passenger_car" route="N2S" begin="0" end="25200" probability="0.006" departPos="random" departSpeed="max"/>
+  <flow id="early_night_N2E" type="passenger_car" route="N2E" begin="0" end="25200" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="early_night_N2W" type="passenger_car" route="N2W" begin="0" end="25200" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="early_night_S2N" type="passenger_car" route="S2N" begin="0" end="25200" probability="0.006" departPos="random" departSpeed="max"/>
+  <flow id="early_night_S2E" type="passenger_car" route="S2E" begin="0" end="25200" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="early_night_S2W" type="passenger_car" route="S2W" begin="0" end="25200" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="early_night_E2W" type="passenger_car" route="E2W" begin="0" end="25200" probability="0.005" departPos="random" departSpeed="max"/>
+  <flow id="early_night_E2N" type="passenger_car" route="E2N" begin="0" end="25200" probability="0.001" departPos="random" departSpeed="max"/>
+  <flow id="early_night_E2S" type="passenger_car" route="E2S" begin="0" end="25200" probability="0.001" departPos="random" departSpeed="max"/>
+  <flow id="early_night_W2E" type="passenger_car" route="W2E" begin="0" end="25200" probability="0.005" departPos="random" departSpeed="max"/>
+  <flow id="early_night_W2N" type="passenger_car" route="W2N" begin="0" end="25200" probability="0.001" departPos="random" departSpeed="max"/>
+  <flow id="early_night_W2S" type="passenger_car" route="W2S" begin="0" end="25200" probability="0.001" departPos="random" departSpeed="max"/>
+  
+  <!-- Early night truck traffic (highly reduced) -->
+  <flow id="early_night_N2S_truck" type="heavy_vehicle" route="N2S" begin="0" end="25200" probability="0.002" departPos="random" departSpeed="max"/>
+  <flow id="early_night_S2N_truck" type="heavy_vehicle" route="S2N" begin="0" end="25200" probability="0.002" departPos="random" departSpeed="max"/>
+  <flow id="early_night_E2W_truck" type="heavy_vehicle" route="E2W" begin="0" end="25200" probability="0.001" departPos="random" departSpeed="max"/>
+  <flow id="early_night_W2E_truck" type="heavy_vehicle" route="W2E" begin="0" end="25200" probability="0.001" departPos="random" departSpeed="max"/>
+
+  <!-- MORNING TRAFFIC (07:00-09:00) with left-turners -->
+  <!-- Main direction North→South with higher inbound traffic -->
+  <flow id="morning_N2S" type="passenger_car" route="N2S" begin="25200" end="32400" probability="0.12" departPos="random" departSpeed="max"/>
+  <flow id="morning_N2E" type="passenger_car" route="N2E" begin="25200" end="32400" probability="0.03" departPos="random"/>
+  <flow id="morning_N2W" type="passenger_car" route="N2W" begin="25200" end="32400" probability="0.04" departPos="random"/>
+  <flow id="morning_N2S_truck" type="heavy_vehicle" route="N2S" begin="25200" end="32400" probability="0.012" departPos="random"/>
+  <flow id="morning_N2E_truck" type="heavy_vehicle" route="N2E" begin="25200" end="32400" probability="0.003" departPos="random"/>
+  <flow id="morning_N2W_truck" type="heavy_vehicle" route="N2W" begin="25200" end="32400" probability="0.004" departPos="random"/>
+  
+  <!-- Opposite direction South→North with less traffic -->
+  <flow id="morning_S2N" type="passenger_car" route="S2N" begin="25200" end="32400" probability="0.08" departPos="random"/>
+  <flow id="morning_S2E" type="passenger_car" route="S2E" begin="25200" end="32400" probability="0.02" departPos="random"/>
+  <flow id="morning_S2W" type="passenger_car" route="S2W" begin="25200" end="32400" probability="0.02" departPos="random"/>
+  <flow id="morning_S2N_truck" type="heavy_vehicle" route="S2N" begin="25200" end="32400" probability="0.008" departPos="random"/>
+  <flow id="morning_S2E_truck" type="heavy_vehicle" route="S2E" begin="25200" end="32400" probability="0.002" departPos="random"/>
+  <flow id="morning_S2W_truck" type="heavy_vehicle" route="S2W" begin="25200" end="32400" probability="0.002" departPos="random"/>
+  
+  <!-- East-West traffic -->
+  <flow id="morning_E2W" type="passenger_car" route="E2W" begin="25200" end="32400" probability="0.08" departPos="random"/>
+  <flow id="morning_E2N" type="passenger_car" route="E2N" begin="25200" end="32400" probability="0.02" departPos="random"/>
+  <flow id="morning_E2S" type="passenger_car" route="E2S" begin="25200" end="32400" probability="0.03" departPos="random"/>
+  <flow id="morning_E2W_truck" type="heavy_vehicle" route="E2W" begin="25200" end="32400" probability="0.008" departPos="random"/>
+  <flow id="morning_E2N_truck" type="heavy_vehicle" route="E2N" begin="25200" end="32400" probability="0.002" departPos="random"/>
+  <flow id="morning_E2S_truck" type="heavy_vehicle" route="E2S" begin="25200" end="32400" probability="0.003" departPos="random"/>
+  
+  <!-- West-East traffic -->
+  <flow id="morning_W2E" type="passenger_car" route="W2E" begin="25200" end="32400" probability="0.09" departPos="random"/>
+  <flow id="morning_W2N" type="passenger_car" route="W2N" begin="25200" end="32400" probability="0.02" departPos="random"/>
+  <flow id="morning_W2S" type="passenger_car" route="W2S" begin="25200" end="32400" probability="0.02" departPos="random"/>
+  <flow id="morning_W2E_truck" type="heavy_vehicle" route="W2E" begin="25200" end="32400" probability="0.009" departPos="random"/>
+  <flow id="morning_W2N_truck" type="heavy_vehicle" route="W2N" begin="25200" end="32400" probability="0.002" departPos="random"/>
+  <flow id="morning_W2S_truck" type="heavy_vehicle" route="W2S" begin="25200" end="32400" probability="0.002" departPos="random"/>
+
+  <!-- BUSINESS HOURS AM (09:00-12:00) with more even distribution -->
+  <flow id="day_am_N2S" type="passenger_car" route="N2S" begin="32400" end="43200" probability="0.07" departPos="random"/>
+  <flow id="day_am_N2E" type="passenger_car" route="N2E" begin="32400" end="43200" probability="0.025" departPos="random"/>
+  <flow id="day_am_N2W" type="passenger_car" route="N2W" begin="32400" end="43200" probability="0.025" departPos="random"/>
+  <flow id="day_am_S2N" type="passenger_car" route="S2N" begin="32400" end="43200" probability="0.05" departPos="random"/>
+  <flow id="day_am_S2E" type="passenger_car" route="S2E" begin="32400" end="43200" probability="0.015" departPos="random"/>
+  <flow id="day_am_S2W" type="passenger_car" route="S2W" begin="32400" end="43200" probability="0.015" departPos="random"/>
+  <flow id="day_am_E2W" type="passenger_car" route="E2W" begin="32400" end="43200" probability="0.06" departPos="random"/>
+  <flow id="day_am_E2N" type="passenger_car" route="E2N" begin="32400" end="43200" probability="0.02" departPos="random"/>
+  <flow id="day_am_E2S" type="passenger_car" route="E2S" begin="32400" end="43200" probability="0.02" departPos="random"/>
+  <flow id="day_am_W2E" type="passenger_car" route="W2E" begin="32400" end="43200" probability="0.06" departPos="random"/>
+  <flow id="day_am_W2N" type="passenger_car" route="W2N" begin="32400" end="43200" probability="0.02" departPos="random"/>
+  <flow id="day_am_W2S" type="passenger_car" route="W2S" begin="32400" end="43200" probability="0.02" departPos="random"/>
+
+  <!-- AM trucks -->
+  <flow id="day_am_N2S_truck" type="heavy_vehicle" route="N2S" begin="32400" end="43200" probability="0.007" departPos="random"/>
+  <flow id="day_am_N2E_truck" type="heavy_vehicle" route="N2E" begin="32400" end="43200" probability="0.003" departPos="random"/>
+  <flow id="day_am_N2W_truck" type="heavy_vehicle" route="N2W" begin="32400" end="43200" probability="0.003" departPos="random"/>
+  <flow id="day_am_S2N_truck" type="heavy_vehicle" route="S2N" begin="32400" end="43200" probability="0.005" departPos="random"/>
+  <flow id="day_am_S2E_truck" type="heavy_vehicle" route="S2E" begin="32400" end="43200" probability="0.002" departPos="random"/>
+  <flow id="day_am_S2W_truck" type="heavy_vehicle" route="S2W" begin="32400" end="43200" probability="0.002" departPos="random"/>
+  <flow id="day_am_E2W_truck" type="heavy_vehicle" route="E2W" begin="32400" end="43200" probability="0.006" departPos="random"/>
+  <flow id="day_am_E2N_truck" type="heavy_vehicle" route="E2N" begin="32400" end="43200" probability="0.002" departPos="random"/>
+  <flow id="day_am_E2S_truck" type="heavy_vehicle" route="E2S" begin="32400" end="43200" probability="0.002" departPos="random"/>
+  <flow id="day_am_W2E_truck" type="heavy_vehicle" route="W2E" begin="32400" end="43200" probability="0.006" departPos="random"/>
+  <flow id="day_am_W2N_truck" type="heavy_vehicle" route="W2N" begin="32400" end="43200" probability="0.002" departPos="random"/>
+  <flow id="day_am_W2S_truck" type="heavy_vehicle" route="W2S" begin="32400" end="43200" probability="0.002" departPos="random"/>
+
+  <!-- Special mid-morning pulse (10:00-11:00) for target window -->
+  <flow id="midmorning_pulse_N2S" type="passenger_car" route="N2S" begin="36000" end="39600" probability="0.09" departPos="random"/>
+  <flow id="midmorning_pulse_E2W" type="passenger_car" route="E2W" begin="36000" end="39600" probability="0.08" departPos="random"/>
+  <flow id="midmorning_pulse_W2E" type="passenger_car" route="W2E" begin="36000" end="39600" probability="0.08" departPos="random"/>
+  <flow id="midmorning_pulse_S2N" type="passenger_car" route="S2N" begin="36000" end="39600" probability="0.07" departPos="random"/>
+
+  <!-- MIDDAY (12:00-14:00) with medium traffic -->
+  <flow id="midday_N2S" type="passenger_car" route="N2S" begin="43200" end="50400" probability="0.04" departPos="random"/>
+  <flow id="midday_N2E" type="passenger_car" route="N2E" begin="43200" end="50400" probability="0.015" departPos="random"/>
+  <flow id="midday_N2W" type="passenger_car" route="N2W" begin="43200" end="50400" probability="0.015" departPos="random"/>
+  <flow id="midday_S2N" type="passenger_car" route="S2N" begin="43200" end="50400" probability="0.035" departPos="random"/>
+  <flow id="midday_S2E" type="passenger_car" route="S2E" begin="43200" end="50400" probability="0.01" departPos="random"/>
+  <flow id="midday_S2W" type="passenger_car" route="S2W" begin="43200" end="50400" probability="0.01" departPos="random"/>
+  <flow id="midday_E2W" type="passenger_car" route="E2W" begin="43200" end="50400" probability="0.04" departPos="random"/>
+  <flow id="midday_E2N" type="passenger_car" route="E2N" begin="43200" end="50400" probability="0.012" departPos="random"/>
+  <flow id="midday_E2S" type="passenger_car" route="E2S" begin="43200" end="50400" probability="0.012" departPos="random"/>
+  <flow id="midday_W2E" type="passenger_car" route="W2E" begin="43200" end="50400" probability="0.04" departPos="random"/>
+  <flow id="midday_W2N" type="passenger_car" route="W2N" begin="43200" end="50400" probability="0.012" departPos="random"/>
+  <flow id="midday_W2S" type="passenger_car" route="W2S" begin="43200" end="50400" probability="0.012" departPos="random"/>
+  
+  <!-- Midday trucks -->
+  <flow id="midday_N2S_truck" type="heavy_vehicle" route="N2S" begin="43200" end="50400" probability="0.004" departPos="random"/>
+  <flow id="midday_S2N_truck" type="heavy_vehicle" route="S2N" begin="43200" end="50400" probability="0.0035" departPos="random"/>
+  <flow id="midday_E2W_truck" type="heavy_vehicle" route="E2W" begin="43200" end="50400" probability="0.004" departPos="random"/>
+  <flow id="midday_W2E_truck" type="heavy_vehicle" route="W2E" begin="43200" end="50400" probability="0.004" departPos="random"/>
+
+  <!-- BUSINESS HOURS PM (14:00-16:00) -->
+  <flow id="day_pm_N2S" type="passenger_car" route="N2S" begin="50400" end="57600" probability="0.05" departPos="random"/>
+  <flow id="day_pm_N2E" type="passenger_car" route="N2E" begin="50400" end="57600" probability="0.015" departPos="random"/>
+  <flow id="day_pm_N2W" type="passenger_car" route="N2W" begin="50400" end="57600" probability="0.015" departPos="random"/>
+  <flow id="day_pm_S2N" type="passenger_car" route="S2N" begin="50400" end="57600" probability="0.04" departPos="random"/>
+  <flow id="day_pm_S2E" type="passenger_car" route="S2E" begin="50400" end="57600" probability="0.01" departPos="random"/>
+  <flow id="day_pm_S2W" type="passenger_car" route="S2W" begin="50400" end="57600" probability="0.01" departPos="random"/>
+  <flow id="day_pm_E2W" type="passenger_car" route="E2W" begin="50400" end="57600" probability="0.05" departPos="random"/>
+  <flow id="day_pm_E2N" type="passenger_car" route="E2N" begin="50400" end="57600" probability="0.015" departPos="random"/>
+  <flow id="day_pm_E2S" type="passenger_car" route="E2S" begin="50400" end="57600" probability="0.015" departPos="random"/>
+  <flow id="day_pm_W2E" type="passenger_car" route="W2E" begin="50400" end="57600" probability="0.05" departPos="random"/>
+  <flow id="day_pm_W2N" type="passenger_car" route="W2N" begin="50400" end="57600" probability="0.015" departPos="random"/>
+  <flow id="day_pm_W2S" type="passenger_car" route="W2S" begin="50400" end="57600" probability="0.015" departPos="random"/>
+  
+  <!-- PM trucks -->
+  <flow id="day_pm_N2S_truck" type="heavy_vehicle" route="N2S" begin="50400" end="57600" probability="0.005" departPos="random"/>
+  <flow id="day_pm_N2E_truck" type="heavy_vehicle" route="N2E" begin="50400" end="57600" probability="0.002" departPos="random"/>
+  <flow id="day_pm_N2W_truck" type="heavy_vehicle" route="N2W" begin="50400" end="57600" probability="0.002" departPos="random"/>
+  <flow id="day_pm_S2N_truck" type="heavy_vehicle" route="S2N" begin="50400" end="57600" probability="0.004" departPos="random"/>
+  <flow id="day_pm_S2E_truck" type="heavy_vehicle" route="S2E" begin="50400" end="57600" probability="0.001" departPos="random"/>
+  <flow id="day_pm_S2W_truck" type="heavy_vehicle" route="S2W" begin="50400" end="57600" probability="0.001" departPos="random"/>
+  <flow id="day_pm_E2W_truck" type="heavy_vehicle" route="E2W" begin="50400" end="57600" probability="0.005" departPos="random"/>
+  <flow id="day_pm_E2N_truck" type="heavy_vehicle" route="E2N" begin="50400" end="57600" probability="0.0015" departPos="random"/>
+  <flow id="day_pm_E2S_truck" type="heavy_vehicle" route="E2S" begin="50400" end="57600" probability="0.0015" departPos="random"/>
+  <flow id="day_pm_W2E_truck" type="heavy_vehicle" route="W2E" begin="50400" end="57600" probability="0.005" departPos="random"/>
+  <flow id="day_pm_W2N_truck" type="heavy_vehicle" route="W2N" begin="50400" end="57600" probability="0.0015" departPos="random"/>
+  <flow id="day_pm_W2S_truck" type="heavy_vehicle" route="W2S" begin="50400" end="57600" probability="0.0015" departPos="random"/>
+
+  <!-- TRANSITION TRAFFIC (16:00-17:00) - Bridge to evening traffic -->
+  <flow id="transition_N2S" type="passenger_car" route="N2S" begin="57600" end="61200" probability="0.06" departPos="random"/>
+  <flow id="transition_N2E" type="passenger_car" route="N2E" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_N2W" type="passenger_car" route="N2W" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_S2N" type="passenger_car" route="S2N" begin="57600" end="61200" probability="0.07" departPos="random"/>
+  <flow id="transition_S2E" type="passenger_car" route="S2E" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_S2W" type="passenger_car" route="S2W" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_E2W" type="passenger_car" route="E2W" begin="57600" end="61200" probability="0.06" departPos="random"/>
+  <flow id="transition_E2N" type="passenger_car" route="E2N" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_E2S" type="passenger_car" route="E2S" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_W2E" type="passenger_car" route="W2E" begin="57600" end="61200" probability="0.06" departPos="random"/>
+  <flow id="transition_W2N" type="passenger_car" route="W2N" begin="57600" end="61200" probability="0.02" departPos="random"/>
+  <flow id="transition_W2S" type="passenger_car" route="W2S" begin="57600" end="61200" probability="0.02" departPos="random"/>
+
+  <!-- EVENING TRAFFIC (17:00-19:00) with higher outbound volume -->
+  <!-- North→South with inverse pattern vs morning -->
+  <flow id="evening_N2S" type="passenger_car" route="N2S" begin="61200" end="68400" probability="0.05" departPos="random"/>
+  <flow id="evening_N2E" type="passenger_car" route="N2E" begin="61200" end="68400" probability="0.015" departPos="random"/>
+  <flow id="evening_N2W" type="passenger_car" route="N2W" begin="61200" end="68400" probability="0.015" departPos="random"/>
+  <flow id="evening_N2S_truck" type="heavy_vehicle" route="N2S" begin="61200" end="68400" probability="0.005" departPos="random"/>
+  <flow id="evening_N2E_truck" type="heavy_vehicle" route="N2E" begin="61200" end="68400" probability="0.0015" departPos="random"/>
+  <flow id="evening_N2W_truck" type="heavy_vehicle" route="N2W" begin="61200" end="68400" probability="0.0015" departPos="random"/>
+  
+  <!-- South→North with higher outbound traffic -->
+  <flow id="evening_S2N" type="passenger_car" route="S2N" begin="61200" end="68400" probability="0.09" departPos="random"/>
+  <flow id="evening_S2E" type="passenger_car" route="S2E" begin="61200" end="68400" probability="0.025" departPos="random"/>
+  <flow id="evening_S2W" type="passenger_car" route="S2W" begin="61200" end="68400" probability="0.025" departPos="random"/>
+  <flow id="evening_S2N_truck" type="heavy_vehicle" route="S2N" begin="61200" end="68400" probability="0.009" departPos="random"/>
+  <flow id="evening_S2E_truck" type="heavy_vehicle" route="S2E" begin="61200" end="68400" probability="0.0025" departPos="random"/>
+  <flow id="evening_S2W_truck" type="heavy_vehicle" route="S2W" begin="61200" end="68400" probability="0.0025" departPos="random"/>
+  
+  <!-- East-West traffic -->
+  <flow id="evening_E2W" type="passenger_car" route="E2W" begin="61200" end="68400" probability="0.07" departPos="random"/>
+  <flow id="evening_E2N" type="passenger_car" route="E2N" begin="61200" end="68400" probability="0.02" departPos="random"/>
+  <flow id="evening_E2S" type="passenger_car" route="E2S" begin="61200" end="68400" probability="0.02" departPos="random"/>
+  <flow id="evening_E2W_truck" type="heavy_vehicle" route="E2W" begin="61200" end="68400" probability="0.007" departPos="random"/>
+  <flow id="evening_E2N_truck" type="heavy_vehicle" route="E2N" begin="61200" end="68400" probability="0.002" departPos="random"/>
+  <flow id="evening_E2S_truck" type="heavy_vehicle" route="E2S" begin="61200" end="68400" probability="0.002" departPos="random"/>
+  
+  <!-- West-East traffic -->
+  <flow id="evening_W2E" type="passenger_car" route="W2E" begin="61200" end="68400" probability="0.08" departPos="random"/>
+  <flow id="evening_W2N" type="passenger_car" route="W2N" begin="61200" end="68400" probability="0.02" departPos="random"/>
+  <flow id="evening_W2S" type="passenger_car" route="W2S" begin="61200" end="68400" probability="0.02" departPos="random"/>
+  <flow id="evening_W2E_truck" type="heavy_vehicle" route="W2E" begin="61200" end="68400" probability="0.008" departPos="random"/>
+  <flow id="evening_W2N_truck" type="heavy_vehicle" route="W2N" begin="61200" end="68400" probability="0.002" departPos="random"/>
+  <flow id="evening_W2S_truck" type="heavy_vehicle" route="W2S" begin="61200" end="68400" probability="0.002" departPos="random"/>
+
+  <!-- NIGHT TRAFFIC (19:00-24:00) with low volume -->
+  <flow id="night_N2S" type="passenger_car" route="N2S" begin="68400" end="86400" probability="0.008" departPos="random" departSpeed="max"/>
+  <flow id="night_N2E" type="passenger_car" route="N2E" begin="68400" end="86400" probability="0.002" departPos="random" departSpeed="max"/>
+  <flow id="night_N2W" type="passenger_car" route="N2W" begin="68400" end="86400" probability="0.002" departPos="random" departSpeed="max"/>
+  <flow id="night_S2N" type="passenger_car" route="S2N" begin="68400" end="86400" probability="0.008" departPos="random" departSpeed="max"/>
+  <flow id="night_S2E" type="passenger_car" route="S2E" begin="68400" end="86400" probability="0.002" departPos="random" departSpeed="max"/>
+  <flow id="night_S2W" type="passenger_car" route="S2W" begin="68400" end="86400" probability="0.002" departPos="random" departSpeed="max"/>
+  <flow id="night_E2W" type="passenger_car" route="E2W" begin="68400" end="86400" probability="0.007" departPos="random" departSpeed="max"/>
+  <flow id="night_E2N" type="passenger_car" route="E2N" begin="68400" end="86400" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="night_E2S" type="passenger_car" route="E2S" begin="68400" end="86400" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="night_W2E" type="passenger_car" route="W2E" begin="68400" end="86400" probability="0.007" departPos="random" departSpeed="max"/>
+  <flow id="night_W2N" type="passenger_car" route="W2N" begin="68400" end="86400" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="night_W2S" type="passenger_car" route="W2S" begin="68400" end="86400" probability="0.0015" departPos="random" departSpeed="max"/>
+  
+  <!-- Night truck traffic (reduced) -->
+  <flow id="night_N2S_truck" type="heavy_vehicle" route="N2S" begin="68400" end="86400" probability="0.003" departPos="random" departSpeed="max"/>
+  <flow id="night_S2N_truck" type="heavy_vehicle" route="S2N" begin="68400" end="86400" probability="0.003" departPos="random" departSpeed="max"/>
+  <flow id="night_E2W_truck" type="heavy_vehicle" route="E2W" begin="68400" end="86400" probability="0.0015" departPos="random" departSpeed="max"/>
+  <flow id="night_W2E_truck" type="heavy_vehicle" route="W2E" begin="68400" end="86400" probability="0.0015" departPos="random" departSpeed="max"/>
+
+</routes>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <!-- SUMO pedestrian routes: defines pedestrian types and time-of-day person flows. -->
+    <!-- Pedestrian types -->
+    <vType id="agile_pedestrian" vClass="pedestrian" width="0.7" length="0.7" minGap="0.3" maxSpeed="1.9" color="0.0,0.0,1.0" guiShape="pedestrian"/>
+    <vType id="regular_pedestrian" vClass="pedestrian" width="0.8" length="0.8" minGap="0.5" maxSpeed="1.5" color="0.0,0.7,0.0" guiShape="pedestrian"/>
+    <vType id="vulnerable_pedestrian" vClass="pedestrian" width="0.7" length="1.0" minGap="0.9" maxSpeed="0.8" color="1.0,0.0,0.0" guiShape="pedestrian"/>
+
+    <!-- Person flows by time of day and direction (all classes) -->
+    <!-- Morning (07:00-09:00) -->
+    <personFlow id="morning_agile_N2S" type="agile_pedestrian" begin="25200" end="32400" personsPerHour="100"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="morning_normal_N2S" type="regular_pedestrian" begin="25200" end="32400" personsPerHour="200"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="morning_vuln_N2S" type="vulnerable_pedestrian" begin="25200" end="32400" personsPerHour="40"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="morning_agile_S2N" type="agile_pedestrian" begin="25200" end="32400" personsPerHour="100"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="morning_normal_S2N" type="regular_pedestrian" begin="25200" end="32400" personsPerHour="200"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="morning_vuln_S2N" type="vulnerable_pedestrian" begin="25200" end="32400" personsPerHour="40"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="morning_agile_W2E" type="agile_pedestrian" begin="25200" end="32400" personsPerHour="100"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="morning_normal_W2E" type="regular_pedestrian" begin="25200" end="32400" personsPerHour="200"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="morning_vuln_W2E" type="vulnerable_pedestrian" begin="25200" end="32400" personsPerHour="40"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="morning_agile_E2W" type="agile_pedestrian" begin="25200" end="32400" personsPerHour="100"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="morning_normal_E2W" type="regular_pedestrian" begin="25200" end="32400" personsPerHour="200"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="morning_vuln_E2W" type="vulnerable_pedestrian" begin="25200" end="32400" personsPerHour="40"><personTrip from="-E3" to="E1"/></personFlow>
+
+    <!-- Daytime (09:00-16:00) - slightly increased for more realistic peaks -->
+    <personFlow id="day_agile_N2S" type="agile_pedestrian" begin="32400" end="57600" personsPerHour="80"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="day_normal_N2S" type="regular_pedestrian" begin="32400" end="57600" personsPerHour="180"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="day_vuln_N2S" type="vulnerable_pedestrian" begin="32400" end="57600" personsPerHour="90"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="day_agile_S2N" type="agile_pedestrian" begin="32400" end="57600" personsPerHour="80"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="day_normal_S2N" type="regular_pedestrian" begin="32400" end="57600" personsPerHour="180"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="day_vuln_S2N" type="vulnerable_pedestrian" begin="32400" end="57600" personsPerHour="90"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="day_agile_W2E" type="agile_pedestrian" begin="32400" end="57600" personsPerHour="80"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="day_normal_W2E" type="regular_pedestrian" begin="32400" end="57600" personsPerHour="180"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="day_vuln_W2E" type="vulnerable_pedestrian" begin="32400" end="57600" personsPerHour="90"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="day_agile_E2W" type="agile_pedestrian" begin="32400" end="57600" personsPerHour="80"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="day_normal_E2W" type="regular_pedestrian" begin="32400" end="57600" personsPerHour="180"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="day_vuln_E2W" type="vulnerable_pedestrian" begin="32400" end="57600" personsPerHour="90"><personTrip from="-E3" to="E1"/></personFlow>
+    <!-- Evening (16:00-19:00) -->
+    <personFlow id="evening_agile_N2S" type="agile_pedestrian" begin="57600" end="68400" personsPerHour="90"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="evening_normal_N2S" type="regular_pedestrian" begin="57600" end="68400" personsPerHour="180"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="evening_vuln_N2S" type="vulnerable_pedestrian" begin="57600" end="68400" personsPerHour="50"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="evening_agile_S2N" type="agile_pedestrian" begin="57600" end="68400" personsPerHour="90"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="evening_normal_S2N" type="regular_pedestrian" begin="57600" end="68400" personsPerHour="180"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="evening_vuln_S2N" type="vulnerable_pedestrian" begin="57600" end="68400" personsPerHour="50"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="evening_agile_W2E" type="agile_pedestrian" begin="57600" end="68400" personsPerHour="90"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="evening_normal_W2E" type="regular_pedestrian" begin="57600" end="68400" personsPerHour="180"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="evening_vuln_W2E" type="vulnerable_pedestrian" begin="57600" end="68400" personsPerHour="50"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="evening_agile_E2W" type="agile_pedestrian" begin="57600" end="68400" personsPerHour="90"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="evening_normal_E2W" type="regular_pedestrian" begin="57600" end="68400" personsPerHour="180"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="evening_vuln_E2W" type="vulnerable_pedestrian" begin="57600" end="68400" personsPerHour="50"><personTrip from="-E3" to="E1"/></personFlow>
+    <!-- Night (19:00-07:00) -->
+    <personFlow id="night_agile_N2S" type="agile_pedestrian" begin="68400" end="111600" personsPerHour="30"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="night_normal_N2S" type="regular_pedestrian" begin="68400" end="111600" personsPerHour="50"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="night_vuln_N2S" type="vulnerable_pedestrian" begin="68400" end="111600" personsPerHour="15"><personTrip from="-E0" to="E2"/></personFlow>
+    <personFlow id="night_agile_S2N" type="agile_pedestrian" begin="68400" end="111600" personsPerHour="30"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="night_normal_S2N" type="regular_pedestrian" begin="68400" end="111600" personsPerHour="50"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="night_vuln_S2N" type="vulnerable_pedestrian" begin="68400" end="111600" personsPerHour="15"><personTrip from="-E2" to="E0"/></personFlow>
+    <personFlow id="night_agile_W2E" type="agile_pedestrian" begin="68400" end="111600" personsPerHour="30"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="night_normal_W2E" type="regular_pedestrian" begin="68400" end="111600" personsPerHour="50"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="night_vuln_W2E" type="vulnerable_pedestrian" begin="68400" end="111600" personsPerHour="15"><personTrip from="-E1" to="E3"/></personFlow>
+    <personFlow id="night_agile_E2W" type="agile_pedestrian" begin="68400" end="111600" personsPerHour="30"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="night_normal_E2W" type="regular_pedestrian" begin="68400" end="111600" personsPerHour="50"><personTrip from="-E3" to="E1"/></personFlow>
+    <personFlow id="night_vuln_E2W" type="vulnerable_pedestrian" begin="68400" end="111600" personsPerHour="15"><personTrip from="-E3" to="E1"/></personFlow>
+</routes>

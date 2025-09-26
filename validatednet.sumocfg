@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+    <!-- SUMO config for the validated network: inputs, simulation time, and processing parameters for pedestrians and vehicles. -->
+    <input>
+        <net-file value="validated_net.net.xml"/>
+        <route-files value="pedestrians.rou.xml,vehicles.rou.xml"/>
+    </input>
+    
+    <time>
+        <begin value="0"/>   
+        <end value="86400"/>             
+    </time>
+    
+    <processing>
+        <pedestrian.model value="striping"/>
+        <pedestrian.striping.dawdling value="0.2"/> <!-- Pedestrian behavior variability -->
+        <pedestrian.striping.jamtime value="30"/>   <!-- Time before pedestrians seek alternative path (s) -->
+        <pedestrian.striping.stripe-width value="0.5"/> <!-- Stripe width (m) -->
+        
+        <!-- Vehicle-related parameters (overridden only if passed via additional SUMO options) -->
+        <time-to-teleport value="-1"/>    <!-- Disable teleportation for realism -->
+        <default.speeddev value="0.15"/>  <!-- Realistic speed variations (±15%) -->
+        <collision.action value="warn"/>  <!-- Collision handling: warn only (do not abort) -->
+        <ignore-junction-blocker value="20"/> <!-- Mitigates gridlocks at complex junctions -->
+    </processing>
+</sumoConfiguration>

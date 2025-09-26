@@ -1,0 +1,49 @@
+{
+  "action_usage": {
+    "agent": {
+      "counts": [
+        7434,
+        6453,
+        31359,
+        44754
+      ],
+      "shares": [
+        0.0826,
+        0.0717,
+        0.3484333333333333,
+        0.4972666666666667
+      ],
+      "file": "figures\\policy_analysis\\action_usage_agent.png"
+    },
+    "baseline": {
+      "counts": [
+        22602,
+        22584,
+        22836,
+        21978
+      ],
+      "shares": [
+        0.2511333333333333,
+        0.25093333333333334,
+        0.2537333333333333,
+        0.2442
+      ],
+      "file": "figures\\policy_analysis\\action_usage_baseline.png"
+    }
+  },
+  "safety_report": "figures\\policy_analysis\\safety_report.txt",
+  "heatmaps": {
+    "pressure": "figures\\policy_analysis\\heat_pressure_agent.png",
+    "elapsed": "figures\\policy_analysis\\heat_elapsed_agent.png",
+    "wait_sum": "figures\\policy_analysis\\heat_waitsum_agent.png"
+  },
+  "permutation_importance": "figures\\policy_analysis\\permutation_importance.png",
+  "attempts_before_min_green": {
+    "agent": 82680,
+    "baseline": 0
+  },
+  "mean_vehicle_wait_agent": 0.0,
+  "mean_vehicle_wait_baseline": 0.0,
+  "total_steps_agent": 90000,
+  "total_steps_baseline": 90000
+}

@@ -1,0 +1,6 @@
+# Safety Report
+
+Agent attempted early phase switch before min-green: 93980
+Baseline attempted early phase switch before min-green: 0
+Executed violations: 0 (FSM enforced).
+Interpretation: A high number of attempts can indicate an aggressive switching strategy.
